@@ -1,21 +1,23 @@
-import $ from "jquery";
+import $ from 'jquery';
+import _ from 'lodash';
 
-$('document').ready(() => {
-  const p1 = $("<p>").text("Holberton Dashboard");
-  const p2 = $("<p>").text("Dashboard data for the students");
-  const btn = $("<button>").text("Click here to get staarted");
-  const p3 = $("<p>").addAttribute("id", "count");
-  const p4 = $("<p>").text("Copyright - Holberton School");
 
-  $("body").append(p1, p2, btn, p3, p4);
+$("body").append('<p>Holberton Dashboard</p>');
+$("body").append('<p>Dashboard data for the students</p>');
+$("body").append('<button>Click here to get started</button>');
+$("body").append('<p id="count"></p>');
+$("body").append('<p>Copyright - Holberton School</p>');
 
-  const count = 0;
+function updateCounter() {
+  let $button = $('button');
+  let clickCount = 0;
 
-  function updateCounter() {
-    $(btn).onClick((e) => {
-      e.preventDefault();
-      count++;
-      $(p3).text(`${count} clicks on the button`);
-    });
-  }
-});
+  $($button).on('click', function (e) {
+    e.preventDefault();
+    clickCount++;
+
+    $('#count').content(`${clickCount} clicks on the button`);
+  });
+}
+
+_.debounce(updateCounter, wait=5000);
